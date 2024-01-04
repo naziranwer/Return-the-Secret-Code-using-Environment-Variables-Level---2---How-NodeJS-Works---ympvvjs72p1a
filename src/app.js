@@ -23,11 +23,14 @@ HTTP Status Code: 200
 Use the encryptString function given above to encrypt the secret code
 */
 
-const encryptedValue=encryptString(process.env.SECRET);
+
 
 app.get('/api/get-env', (req, res) => {
     //Write your code here
-    res.send(200,{"secret":encryptedValue});
+    const key=process.env.SECRET;
+    const encryptedValue=encryptString(key)
+    res.status(200).json({'secret':encryptedValue});
+    // res.send(200,{"secret":encryptedValue});
 });
 
 module.exports = app;
